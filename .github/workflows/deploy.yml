@@ -27,7 +27,7 @@ jobs:
           name: horusec
           path: horusec-config.json  
   
-  sonar:
+  SonarCloud:
     name: SonarCloud
     runs-on: ubuntu-latest
     steps:
@@ -46,10 +46,10 @@ jobs:
             -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION}}  
             -Dsonar.source=. 
             -Dsonar.sourceEncoding=UTF-8 
+            
   snyk-code:
     name: security snyk code
     runs-on: ubuntu-latest
-    needs: [security_secret]
     steps:
       - uses: actions/checkout@master
       - name: Run Snyk to check for vulnerabilities
@@ -62,15 +62,16 @@ jobs:
             --severity-threshold=high
             --all-projects
             --sarif-file-output=snyk-code.sarif
-      - name: Upload SARIF file
+#      - name: Upload SARIF file
         #if: always()
-        uses: github/codeql-action/upload-sarif@v2
-        with:
-          sarif_file: snyk-code.sarif  
+#        uses: github/codeql-action/upload-sarif@v2
+#        with:
+#          sarif_file: snyk-code.sarif  
           
   deploy-heroku:
     name: Deploy Heroku
     runs-on: ubuntu-latest
+    needs: [security_secret,SonarCloud,snyk-code]    
     steps:
       - uses: actions/checkout@v2
       - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
