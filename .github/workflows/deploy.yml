@@ -20,7 +20,7 @@ jobs:
         #continue-on-error: true
         run: |
           curl -fsSL https://raw.githubusercontent.com/ZupIT/horusec/main/deployments/scripts/install.sh | bash -s latest
-          horusec start -p="./" --config-file-path horusec-config.json    
+          horusec start -p . --config-file-path horusec-config.json    
       - name: Upload  security scan result as artifact
         uses: actions/upload-artifact@v3
         with:
