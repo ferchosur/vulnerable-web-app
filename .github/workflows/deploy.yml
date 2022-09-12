@@ -109,5 +109,4 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "app-vulnerable-ferchosur" #Must be unique in Heroku
           heroku_email: "ferchosur@gmail.com"
-          remote_branch: "master"
           usedocker: true
