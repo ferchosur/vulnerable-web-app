@@ -59,6 +59,7 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           args: >
+            -d
             --sarif
             --severity-threshold=high
             --file=package.json
