@@ -59,6 +59,7 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           args: >
+            --sarif
             --severity-threshold=high
             --file=package.json
             --sarif-file-output=snyk-code.sarif
@@ -66,7 +67,7 @@ jobs:
         #if: always()
         uses: github/codeql-action/upload-sarif@v2
         with:
-          sarif_file: ./snyk-code.sarif  
+          sarif_file: snyk-code.sarif  
           
   snyk-container:
     name: Security Snyk Container
