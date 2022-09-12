@@ -16,21 +16,6 @@ jobs:
         uses: zricethezav/gitleaks-action@master
         #continue-on-error: true 
         
-  Horusec:
-      name: Running Horusec
-      runs-on: ubuntu-latest
-      steps:      
-        #continue-on-error: true
-      - name: Running Horusec Security Download latest version
-        run: |
-          curl -fsSL https://raw.githubusercontent.com/ZupIT/horusec/main/deployments/scripts/install.sh | bash -s latest
-          horusec start -p .   
-      - name: Upload  security scan result as artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: horusec
-          path: horusec-config.json  
-  
   SonarCloud:
     name: SonarCloud
     runs-on: ubuntu-latest
