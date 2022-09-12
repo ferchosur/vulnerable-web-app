@@ -61,12 +61,13 @@ jobs:
           args: >
             --severity-threshold=high
             --all-projects
-            --sarif-file-output=snyk-code.sarif
+    #        --sarif-file-output=snyk-code.sarif
       - name: Upload SARIF file
         #if: always()
         uses: github/codeql-action/upload-sarif@v2
         with:
           sarif_file: snyk-code.sarif  
+          
   snyk-container:
     name: Security Snyk Container
     runs-on: ubuntu-latest
