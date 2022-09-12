@@ -39,7 +39,13 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
- 
+        with:
+          projectBaseDir: . 
+          args: >
+            -Dsonar.projectKey=${{ secrets.SONAR_PROJECTKEY}}
+            -Dsonar.projectName=${{ secrets.SONAR_ORGANIZATION}}  
+            -Dsonar.source=. 
+            -Dsonar.sourceEncoding=UTF-8 
   
   deploy-heroku:
     name: Deploy Heroku
