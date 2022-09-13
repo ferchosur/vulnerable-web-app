@@ -125,8 +125,7 @@ jobs:
           heroku_app_name: "app-vulnerable-ferchosur" #Must be unique in Heroku
           heroku_email: "ferchosur@gmail.com"
           usedocker: true
-          
-          
+        
   zap_scan:
     runs-on: ubuntu-latest
     needs: [deploy-heroku]
